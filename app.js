@@ -1,4 +1,5 @@
 var express = require('express');
+var mongod = require('./db');
 var app = express();
 
 app.use(express.static(__dirname + '/'));
