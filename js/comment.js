@@ -22,40 +22,58 @@ var CommentList = React.createClass({
         return <Comment author={comment.author} text={comment.text}></Comment>;
     });
     return (
-      <div className="commentList">
+        <div className="commentList">
          {commentNodes}
-      </div>
+        </div>
     );
   }
 });
 
 var CommentForm = React.createClass({
-  render: function() {
-    return (
-      <form className="commentForm">
-        <input type="text" placeholder="Your name" />
-        <input type="text" placeholder="Say something..." />
-        <input type="submit" value="Post" />
-      </form>
-    );
-  }
+    handleSubmit: function() {
+        var author = this.refs.author.getDOMNode().value.trim();
+        var text = this.refs.text.getDOMNode().value.trim();
+        this.props.onCommentSubmit({author: author, text: text});
+        //this.refs.author.getDOMNode().value = '';
+        this.refs.text.getDOMNode().value = '';
+        return false;
+    },
+    render: function() {
+        return (
+            <div className="commentForm">
+                <input type="text" placeholder="Your name" ref="author"/>
+                <input type="text" placeholder="Say something..." ref="text" />
+                <input type="button" value="Post" onClick={this.handleSubmit}/>
+            </div>
+        );
+    }
 });
 
 var CommentBox = React.createClass({
-  render: function() {
-    return (
-      <div className="commentBox">
-        <h1>Comments</h1>
-
-        <CommentList data={this.props.data}/>
-        <CommentForm />
-      </div>
-
-    );
-  }
+    receiveComment: function(comment) {
+        var comments = this.state.data;
+        var newComments = comments.concat([comment]);
+        this.setState({data: newComments});
+    },
+    handleCommentSubmit: function(comment) {
+        socket.emit('sendComment', comment);
+    },
+    getInitialState: function() {
+        socket.on('receiveComment', this.receiveComment);
+        return {data: []};
+    },
+    render: function() {
+        return (
+          <div className="commentBox">
+            <h1>Comments</h1>
+            <CommentList data={this.state.data} />
+            <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+          </div>
+        );
+    }
 });
 
 React.renderComponent(
-  <CommentBox data={data} />,
+  <CommentBox/>,
   document.getElementById('content')
 );
