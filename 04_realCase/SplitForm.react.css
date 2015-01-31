@@ -1,0 +1,89 @@
+.content
+{
+	position: relative;;
+	width: 800px;
+	height: auto;
+}
+
+.infoBlock
+{
+	position: relative;;
+	margin-top: 10px;
+	width: 100%;
+	display: inline-block;
+	height: auto;
+	text-align: right;
+}
+
+.infoBlock input
+{
+	margin-left: 10px;
+}
+
+.dynamicBlock
+{
+	float: left;
+}
+
+.infoTable{
+	border: 1px;
+	border-style: solid;
+	border-color: #d3d3d3;
+	color: #666;
+	width: 800px;
+}
+.infoTd{
+	border: 1px;
+	border-style: solid;
+	border-color: #e3e3e3;
+	color: #666;
+	text-align: center;
+	min-width: 60px;
+}
+.CompareSame{
+	background-color: #E6FFE6;
+}
+
+.CompareDiff{
+	background-color: #FFE6E6;	
+}
+
+.deleteAction{
+	cursor: pointer;
+}
+
+.deleteAction:hover{
+	color: red;
+	cursor: pointer;
+}
+
+.summaryTable{
+	border: 1px;
+	border-style: solid;
+	border-color: #d3d3d3;
+	color: #666;
+	width: 300px;
+	height: auto;
+	margin-right: 50px;
+}
+
+.adjustTable{
+	border: 1px;
+	border-style: solid;
+	border-color: #d3d3d3;
+	color: #666;
+	height: auto;
+	width: 450px;
+}
+
+.qtyTextbox{
+	width: 50px;
+	text-align: center;
+	height: 12px;
+}
+
+.priceTextbox{
+	width: 100px;
+	text-align: right;
+	height: 12px;
+}
