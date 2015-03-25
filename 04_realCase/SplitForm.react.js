@@ -23,11 +23,10 @@ var SplitTable = React.createClass({
 		});
   	},
 	handleDelete: function(rowIndex){
-        console.log(rowIndex);
-        
-		var splitArray = this.state.splitArray;
+        var splitArray = this.state.splitArray;
 		splitArray.splice(rowIndex, 1);
-		var adjust = this.handleSummary(splitArray);
+        var adjust = this.handleSummary(splitArray);
+
 		this.setState({
 			splitArray: splitArray,
 			adjust: adjust
